@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kboom!! Ropa</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #000;
+        }
+
+        /* Encabezado */
+        header {
+            background: #000;
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header img {
+            max-width: 120px;
+        }
+
+        /* Menú */
+        nav {
+            background: #111;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        /* Contenido */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+
+        /* Productos */
+        .product {
+            border: 2px solid #000;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .product img {
+            width: 100%;
+            max-width: 260px;
+            display: block;
+            margin: auto;
+            border: 2px solid #000;
+        }
+
+        @media (min-width: 600px) {
+            .product {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+        }
+
+        /* Carrito */
+        .cart {
+            border: 2px dashed #000;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        /* Galería */
+        .gallery img {
+            width: 100%;
+            max-width: 200px;
+            border: 2px solid #000;
+            margin: 10px;
+        }
+
+        /* QR */
+        .qr {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        footer {
+            text-align: center;
+            background: #000;
+            color: #fff;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KBOOM!!</h1>
+    <p>Ropa urbana • Blanco y negro</p>
+</header>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Ropa</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#galeria">Galería</a>
+    <a href="#talles">Talles</a>
+    <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- Inicio -->
+<div class="container" id="inicio">
+    <h2>Bienvenidos</h2>
+    <p>Bienvenidos a Kboom!! Ropa urbana minimalista en blanco y negro, creada para quienes buscan estilo, simpleza y comodidad.</p>
+</div>
+
+<!-- Productos -->
+<div class="container" id="productos">
+    <h2>Productos</h2>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/260x320?text=Remera+Oversize" alt="Remera Oversize">
+        <div>
+            <h3>Remera Oversize Negra</h3>
+            <p>Fit moderno y cómodo para todos los días.</p>
+            <strong>$6.500</strong>
+            <br><br>
+            <label>Cantidad:</label>
+            <input type="number" min="1" value="1">
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/260x320?text=Buzo+Blanco" alt="Buzo Blanco">
+        <div>
+            <h3>Buzo Blanco Minimal</h3>
+            <p>Perfecto para outfits monocromáticos.</p>
+            <strong>$12.500</strong>
+            <br><br>
+            <label>Cantidad:</label>
+            <input type="number" min="1" value="1">
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/260x320?text=Pantalon+Urbano" alt="Pantalón Urbano">
+        <div>
+            <h3>Pantalón Urbano Streetwear</h3>
+            <p>Estilo suelto, super cómodo y combinable.</p>
+            <strong>$9.800</strong>
+            <br><br>
+            <label>Cantidad:</label>
+            <input type="number" min="1" value="1">
+        </div>
+    </div>
+</div>
+
+<!-- Carrito -->
+<div class="container">
+    <h2>Carrito</h2>
+
+    <div class="cart">
+        <p>Este carrito es simple: los usuarios seleccionan cantidades y luego te envían el pedido por WhatsApp.</p>
+
+        <form action="https://wa.me/3815005907" method="GET">
+            <label>Nombre:</label><br>
+            <input type="text" name="nombre" required><br><br>
+
+            <label>Pedido (especificar productos y cantidades):</label><br>
+            <textarea name="pedido" rows="4" required></textarea><br><br>
+
+            <button type="submit">Enviar pedido por WhatsApp</button>
+        </form>
+    </div>
+</div>
+
+<!-- Nosotros -->
+<div class="container" id="nosotros">
+    <h2>Nosotros</h2>
+    <p>Kboom!! nació con la idea de ofrecer ropa moderna, simple y accesible para todos. Trabajamos con estilo urbano monocromático, buscando calidad y comodidad en cada prenda.</p>
+</div>
+
+<!-- Galería -->
+<div class="container" id="galeria">
+    <h2>Galería</h2>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/200x250?text=Look+1">
+        <img src="https://via.placeholder.com/200x250?text=Look+2">
+        <img src="https://via.placeholder.com/200x250?text=Look+3">
+        <img src="https://via.placeholder.com/200x250?text=Look+4">
+    </div>
+</div>
+
+<!-- Talles -->
+<div class="container" id="talles">
+    <h2>Talles</h2>
+    <p><strong>Remeras:</strong> S / M / L / XL</p>
+    <p><strong>Buzos:</strong> M / L / XL</p>
+    <p><strong>Pantalones:</strong> 36 / 38 / 40 / 42 / 44</p>
+</div>
+
+<!-- Contacto -->
+<div class="container" id="contacto">
+    <h2>Contacto</h2>
+    <p>Email: <strong>kboom!!ropatop@gmail.com</strong></p>
+    <p>Teléfono: <strong>3815005907</strong></p>
+    <p>Dirección: <strong>Av. Democracia</strong></p>
+</div>
+
+<!-- QR -->
+<div class="qr">
+    <h2>Abrir desde el celular</h2>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tu-pagina-kboom.com" alt="QR Kboom">
+    <p>Escaneá el código para entrar a la tienda.</p>
+</div>
+
+<footer>
+    © 2025 • Kboom!! Ropa
+</footer>
+
+</body>
+</html>
+
