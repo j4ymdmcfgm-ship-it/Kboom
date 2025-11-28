@@ -1,233 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kboom!! Ropa</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #fff;
-            color: #000;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kboom!! Ropa</title>
+  <style>
+    /* RESET MINIMO */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg,#0b0b0b 0%, #2b2b2b 100%); /* degradado negro->gris */
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+    }
 
-        /* Encabezado */
-        header {
-            background: #000;
-            color: #fff;
-            padding: 25px;
-            text-align: center;
-        }
+    /* Textura muy ligera (opcional y muy liviana) */
+    body::before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;
+      background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity:0.08;
+    }
 
-        header img {
-            max-width: 120px;
-        }
+    .wrap{max-width:980px;margin:0 auto;padding:18px;}
 
-        /* Menú */
-        nav {
-            background: #111;
-            padding: 10px;
-            text-align: center;
-        }
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:18px 8px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .brand img{height:64px; width:auto; display:block;}
+    .brand .title{font-weight:700; letter-spacing:2px; font-size:20px;}
 
-        nav a {
-            color: #fff;
-            margin: 0 15px;
-            text-decoration: none;
-        }
+    /* NAV estilo streetwear */
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:6px;
+      font-weight:600;
+      transition: all .18s ease;
+      letter-spacing:1px;
+      opacity:0.95;
+    }
+    nav a:hover{
+      transform:translateY(-3px);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
 
-        /* Contenido */
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 15px;
-        }
+    /* HERO */
+    .hero{
+      text-align:center;
+      padding:28px 10px 18px;
+    }
+    .hero h1{font-size:38px; margin-bottom:6px; letter-spacing:2px;}
+    .hero p{color:rgba(255,255,255,0.85); margin-bottom:6px;}
 
-        h2 {
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-        }
+    /* SECCION PRODUCTOS */
+    .section-title{
+      font-size:28px;
+      margin:18px 0;
+      text-align:center;
+    }
 
-        /* Productos */
-        .product {
-            border: 2px solid #000;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+    .products-grid{
+      display:grid;
+      grid-template-columns: repeat(1,1fr);
+      gap:18px;
+    }
 
-        .product img {
-            width: 100%;
-            max-width: 260px;
-            display: block;
-            margin: auto;
-            border: 2px solid #000;
-        }
+    /* product card */
+    .card{
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+      border: 1px solid rgba(255,255,255,0.06);
+      padding:12px;
+      border-radius:10px;
+      overflow:hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .card img{
+      width:100%;
+      height: auto;
+      display:block;
+      border-radius:6px;
+      margin-bottom:10px;
+    }
+    .card h3{font-size:18px;margin-bottom:6px;}
+    .card p{color:rgba(255,255,255,0.9);font-size:14px;margin-bottom:8px}
+    .price{font-weight:700;font-size:16px}
 
-        @media (min-width: 600px) {
-            .product {
-                display: flex;
-                gap: 20px;
-                align-items: center;
-            }
-        }
+    /* Carrito simple */
+    .cart{
+      margin-top:8px;padding:10px;border-radius:8px;border:1px dashed rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.25);
+    }
+    .cart input, .cart textarea{
+      width:100%; padding:8px; margin:6px 0; border-radius:6px; border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02); color:#fff;
+    }
+    .btn{
+      display:inline-block;padding:10px 14px;border-radius:8px;background:#fff;color:#000;font-weight:700;text-decoration:none;
+      margin-top:6px;
+    }
 
-        /* Carrito */
-        .cart {
-            border: 2px dashed #000;
-            padding: 15px;
-            margin-top: 20px;
-        }
+    /* GALERIA 3 columnas estilo Instagram */
+    .gallery{
+      display:grid;
+      gap:8px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top:12px;
+    }
+    .gallery img{width:100%;display:block;border-radius:6px;object-fit:cover;height:170px}
 
-        /* Galería */
-        .gallery img {
-            width: 100%;
-            max-width: 200px;
-            border: 2px solid #000;
-            margin: 10px;
-        }
+    /* NOSOTROS */
+    .nosotros{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px;border-radius:8px;margin-top:12px;color:rgba(255,255,255,0.95);
+    }
+    .nosotros h3{margin-bottom:8px}
+    .nosotros p{font-size:15px; color:rgba(255,255,255,0.9)}
 
-        /* QR */
-        .qr {
-            text-align: center;
-            margin: 25px 0;
-        }
+    footer{margin-top:22px;padding:14px;text-align:center;color:rgba(255,255,255,0.7)}
 
-        footer {
-            text-align: center;
-            background: #000;
-            color: #fff;
-            padding: 15px;
-        }
-    </style>
+    /* Responsivo */
+    @media(min-width:640px){
+      .products-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(min-width:980px){
+      .products-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:520px){
+      nav{overflow:auto}
+      .brand img{height:54px}
+      .hero h1{font-size:26px}
+    }
+
+    /* small subtle animation for elements */
+    .fade-in{opacity:0;transform:translateY(8px);animation:enter .6s ease forwards}
+    @keyframes enter{to{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <!-- LOGO: subí tu logo con nombre exacto logo-kboom.png -->
+        <img src="logo-kboom.png" alt="Kboom logo" onerror="this.style.display='none'">
+        <div class="title">KBOOM!!</div>
+      </div>
 
-<header>
-    <h1>KBOOM!!</h1>
-    <p>Ropa urbana • Blanco y negro</p>
-</header>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Ropa</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#galeria">Galería</a>
+        <a href="#talles">Talles</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
 
-<nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#productos">Ropa</a>
-    <a href="#nosotros">Nosotros</a>
-    <a href="#galeria">Galería</a>
-    <a href="#talles">Talles</a>
-    <a href="#contacto">Contacto</a>
-</nav>
+    <main>
+      <section id="inicio" class="hero fade-in">
+        <h1>KBOOM!! Ropa urbana</h1>
+        <p>Blanco y negro • Streetwear minimalista • Diseños pensados para usar siempre</p>
+      </section>
 
-<!-- Inicio -->
-<div class="container" id="inicio">
-    <h2>Bienvenidos</h2>
-    <p>Bienvenidos a Kboom!! Ropa urbana minimalista en blanco y negro, creada para quienes buscan estilo, simpleza y comodidad.</p>
-</div>
+      <section id="productos">
+        <h2 class="section-title fade-in">Productos destacados</h2>
+        <div class="products-grid fade-in">
+          <!-- Card 1 -->
+          <article class="card">
+            <img src="IMG_0634.png" alt="Buzo Kboom">
+            <h3>Buzo Black KBOOM!!</h3>
+            <p>Hoodie oversize, interior afelpado, estampado frontal KBOOM!!</p>
+            <div class="price">$12.500</div>
+            <div style="margin-top:8px;">
+              <label>Talle</label>
+              <select>
+                <option>S</option><option>M</option><option>L</option><option>XL</option>
+              </select>
+            </div>
+          </article>
 
-<!-- Productos -->
-<div class="container" id="productos">
-    <h2>Productos</h2>
+          <!-- Card 2 -->
+          <article class="card">
+            <img src="IMG_0635.png" alt="Pantalón Kboom">
+            <h3>Pantalón Urbano</h3>
+            <p>Corte street, tiro medio, cómodo y resistente.</p>
+            <div class="price">$9.800</div>
+          </article>
 
-    <div class="product">
-        <img src="https://via.placeholder.com/260x320?text=Remera+Oversize" alt="Remera Oversize">
-        <div>
-            <h3>Remera Oversize Negra</h3>
-            <p>Fit moderno y cómodo para todos los días.</p>
-            <strong>$6.500</strong>
-            <br><br>
-            <label>Cantidad:</label>
-            <input type="number" min="1" value="1">
+          <!-- Card 3 -->
+          <article class="card">
+            <img src="IMG_0636.png" alt="Remera Kboom">
+            <h3>Remera Oversize</h3>
+            <p>Algodón premium, fit relajado. Ideal para layering.</p>
+            <div class="price">$6.500</div>
+          </article>
         </div>
-    </div>
+      </section>
 
-    <div class="product">
-        <img src="https://via.placeholder.com/260x320?text=Buzo+Blanco" alt="Buzo Blanco">
-        <div>
-            <h3>Buzo Blanco Minimal</h3>
-            <p>Perfecto para outfits monocromáticos.</p>
-            <strong>$12.500</strong>
-            <br><br>
-            <label>Cantidad:</label>
-            <input type="number" min="1" value="1">
+      <!-- Carrito simple que envia por WhatsApp -->
+      <section class="fade-in" style="margin-top:14px">
+        <h2 class="section-title">Carrito</h2>
+        <div class="cart">
+          <p>Completá tus datos y el pedido. Se abrirá WhatsApp para enviar el pedido.</p>
+          <form action="https://wa.me/3815005907" method="GET" target="_blank">
+            <label>Nombre</label>
+            <input name="nombre" required placeholder="Tu nombre">
+            <label>Pedido (productos y talles)</label>
+            <textarea name="pedido" rows="3" required placeholder="Ej: 1 Buzo L, 2 Remera M"></textarea>
+            <button class="btn" type="submit">Enviar pedido por WhatsApp</button>
+          </form>
         </div>
-    </div>
+      </section>
 
-    <div class="product">
-        <img src="https://via.placeholder.com/260x320?text=Pantalon+Urbano" alt="Pantalón Urbano">
-        <div>
-            <h3>Pantalón Urbano Streetwear</h3>
-            <p>Estilo suelto, super cómodo y combinable.</p>
-            <strong>$9.800</strong>
-            <br><br>
-            <label>Cantidad:</label>
-            <input type="number" min="1" value="1">
+      <!-- GALERIA -->
+      <section id="galeria" style="margin-top:18px">
+        <h2 class="section-title">Galería</h2>
+        <div class="gallery">
+          <img src="IMG_0636.png" alt="look 1">
+          <img src="IMG_0634.png" alt="look 2">
+          <img src="IMG_0635.png" alt="look 3">
+          <!-- podes subir más imágenes y agregarlas aqui -->
         </div>
-    </div>
-</div>
+      </section>
 
-<!-- Carrito -->
-<div class="container">
-    <h2>Carrito</h2>
+      <!-- NOSOTROS -->
+      <section id="nosotros" style="margin-top:18px">
+        <h2 class="section-title">Nosotros</h2>
+        <div class="nosotros">
+          <h3>Nuestra historia</h3>
+          <p>
+            Kboom!! nace de la cultura de la calle: prendas pensadas para el día a día,
+            con materiales resistentes y un diseño que prioriza la simplicidad y el impacto visual.
+            Empezamos como un grupo de amigos que queríamos ropa funcional, cómoda y con actitud.
+          </p>
+          <h3 style="margin-top:10px">Concepto y estilo</h3>
+          <p>
+            Nuestro foco es el blanco y negro, cortes sencillos y estampas llamativas.
+            Creemos en la ropa como lienzo: piezas que se combinan entre sí y que hablan sin ser ostentosas.
+          </p>
+          <h3 style="margin-top:10px">Misión</h3>
+          <p>
+            Entregar prendas urbanas de calidad a un precio justo, fomentando una comunidad real y directa.
+          </p>
+        </div>
+      </section>
 
-    <div class="cart">
-        <p>Este carrito es simple: los usuarios seleccionan cantidades y luego te envían el pedido por WhatsApp.</p>
+      <!-- TALLES -->
+      <section id="talles" style="margin-top:18px">
+        <h2 class="section-title">Talles</h2>
+        <p style="text-align:center">Remeras: S / M / L / XL • Buzos: M / L / XL • Pantalones: 36 / 38 / 40 / 42</p>
+      </section>
 
-        <form action="https://wa.me/3815005907" method="GET">
-            <label>Nombre:</label><br>
-            <input type="text" name="nombre" required><br><br>
+      <!-- CONTACTO -->
+      <section id="contacto" style="margin-top:18px">
+        <h2 class="section-title">Contacto</h2>
+        <p style="text-align:center">Email: <strong>kboom!!ropatop@gmail.com</strong> • Tel: <strong>3815005907</strong></p>
+      </section>
 
-            <label>Pedido (especificar productos y cantidades):</label><br>
-            <textarea name="pedido" rows="4" required></textarea><br><br>
+    </main>
 
-            <button type="submit">Enviar pedido por WhatsApp</button>
-        </form>
-    </div>
-</div>
+    <footer>
+      © 2025 • Kboom!! Ropa
+    </footer>
+  </div>
 
-<!-- Nosotros -->
-<div class="container" id="nosotros">
-    <h2>Nosotros</h2>
-    <p>Kboom!! nació con la idea de ofrecer ropa moderna, simple y accesible para todos. Trabajamos con estilo urbano monocromático, buscando calidad y comodidad en cada prenda.</p>
-</div>
-
-<!-- Galería -->
-<div class="container" id="galeria">
-    <h2>Galería</h2>
-    <div class="gallery">
-        <img src="https://via.placeholder.com/200x250?text=Look+1">
-        <img src="https://via.placeholder.com/200x250?text=Look+2">
-        <img src="https://via.placeholder.com/200x250?text=Look+3">
-        <img src="https://via.placeholder.com/200x250?text=Look+4">
-    </div>
-</div>
-
-<!-- Talles -->
-<div class="container" id="talles">
-    <h2>Talles</h2>
-    <p><strong>Remeras:</strong> S / M / L / XL</p>
-    <p><strong>Buzos:</strong> M / L / XL</p>
-    <p><strong>Pantalones:</strong> 36 / 38 / 40 / 42 / 44</p>
-</div>
-
-<!-- Contacto -->
-<div class="container" id="contacto">
-    <h2>Contacto</h2>
-    <p>Email: <strong>kboom!!ropatop@gmail.com</strong></p>
-    <p>Teléfono: <strong>3815005907</strong></p>
-    <p>Dirección: <strong>Av. Democracia</strong></p>
-</div>
-
-<!-- QR -->
-<div class="qr">
-    <h2>Abrir desde el celular</h2>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tu-pagina-kboom.com" alt="QR Kboom">
-    <p>Escaneá el código para entrar a la tienda.</p>
-</div>
-
-<footer>
-    © 2025 • Kboom!! Ropa
-</footer>
-
+  <script>
+    // small script to add "fade-in" class with a tiny stagger (keeps site functional & lightweight)
+    document.addEventListener('DOMContentLoaded',function(){
+      document.querySelectorAll('.fade-in').forEach(function(el,i){
+        el.style.animationDelay = (i*80) + 'ms';
+      });
+    });
+  </script>
 </body>
 </html>
-
